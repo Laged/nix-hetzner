@@ -1,3 +1,4 @@
-# nixos-anywhere-examples
+# Testing NixOS on Hetzner dedicated
 
-Checkout the [flake.nix](flake.nix) for examples tested on different hosters.
+Experimental, instead try [wiki](https://nixos.wiki/wiki/Install_NixOS_on_Hetzner_Online) 
+
