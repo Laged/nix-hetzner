@@ -10,7 +10,7 @@
     firewall = {
       enable = true;
       allowPing = true;
-      allowedTCPPorts = [ 22 ];
+      allowedTCPPorts = [ 22 3000 ];
     };
   };
   systemd.network = {
