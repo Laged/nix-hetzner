@@ -1,12 +1,10 @@
-{
-  config, pkgs, ...
-}:
+{ config, pkgs, ... }:
 
 {
   boot.loader.grub = {
     enable = true;
-    device = "/dev/nvme0n1";  # This should point to your boot disk (check with lsblk or fdisk)
-    efiSupport = false;  # Disabled because we're using BIOS boot, not UEFI
+    device = "/dev/nvme0n1"; # This should point to your boot disk (check with lsblk or fdisk)
+    efiSupport = false; # Disabled because we're using BIOS boot, not UEFI
   };
 
   # Has to match prepartitioned fs (check lsblk -lf)

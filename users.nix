@@ -1,6 +1,4 @@
-{
-  config, pkgs, ...
-}:
+{ config, pkgs, ... }:
 {
   users.users.laged = {
     isNormalUser = true;
@@ -19,4 +17,3 @@
   security.sudo.wheelNeedsPassword = false;
   services.getty.autologinUser = "laged";
 }
-

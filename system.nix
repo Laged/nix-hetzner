@@ -1,11 +1,8 @@
+{ config, pkgs, ... }:
 {
-  config, pkgs, ...
-}:
-{
-  imports = [
-    ./modules/satisfactory-server.nix
-  ];
+  imports = [ ./modules/satisfactory-server.nix ];
   environment.systemPackages = with pkgs; [
+    btop
     vim
     helix
     git
@@ -16,13 +13,13 @@
     unixtools.netstat
     kitty
     mtr
+    steamcmd
   ];
 
   time.timeZone = "Europe/Helsinki";
   i18n.defaultLocale = "en_US.UTF-8";
   console.keyMap = "fi";
 
-  services.ntp.enable = true;
   services.satisfactory = {
     enable = true;
     beta = "public";
@@ -33,17 +30,6 @@
     autoSaveOnDisconnect = true;
     extraSteamCmdArgs = "";
   };
-  services.redis.servers."".enable = true;
-  services.ntopng = {
-    enable = true;
-    extraConfig = ''
-        --data-dir /var/lib/ntopng
-	--user ntopng
-	--interface any
-	--http-port 3000
-	--http-address 0.0.0.0
-    '';
-  };
 
   nix = {
     package = pkgs.nixFlakes;
@@ -53,4 +39,3 @@
   };
   system.stateVersion = "24.05";
 }
-

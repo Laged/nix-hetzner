@@ -1,16 +1,15 @@
-{
-  configs, pkgs, ...
-}:
+{ configs, pkgs, ... }:
 {
   networking = {
     hostName = "nixtu";
+    # using systemd.network instead
     useDHCP = false;
     networkmanager.enable = false;
     nameservers = [ "1.1.1.1" ];
     firewall = {
       enable = true;
       allowPing = true;
-      allowedTCPPorts = [ 22 3000 ];
+      allowedTCPPorts = [ 22 ];
     };
   };
   systemd.network = {
@@ -18,7 +17,7 @@
     networks = {
       "30-wan" = {
         matchConfig = {
-           Name = "ens4";
+          Name = "ens4";
         };
         DHCP = "yes";
         linkConfig.RequiredForOnline = "routable";
