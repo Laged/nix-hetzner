@@ -8,7 +8,7 @@
   outputs =
     { self, nixpkgs, ... }@inputs:
     let
-      system = "aarch64-darwin";
+      system = "x86_64-linux";
     in
     {
       nixosConfigurations.nixtu = nixpkgs.lib.nixosSystem {
