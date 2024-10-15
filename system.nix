@@ -1,10 +1,6 @@
+{ config, pkgs, ... }:
 {
-  config, pkgs, ...
-}:
-{
-  imports = [
-    ./modules/satisfactory-server.nix
-  ];
+  imports = [ ./modules/satisfactory-server.nix ];
   environment.systemPackages = with pkgs; [
     btop
     vim
@@ -43,4 +39,3 @@
   };
   system.stateVersion = "24.05";
 }
-

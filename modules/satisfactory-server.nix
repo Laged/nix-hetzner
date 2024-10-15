@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   cfg = config.services.satisfactory;
   workingDirectory = cfg.workingDirectory;
@@ -12,7 +17,10 @@ in
     enable = lib.mkEnableOption "Enable Satisfactory Dedicated Server";
 
     beta = lib.mkOption {
-      type = lib.types.enum [ "public" "experimental" ];
+      type = lib.types.enum [
+        "public"
+        "experimental"
+      ];
       default = "public";
       description = "Beta channel to follow";
     };
@@ -109,8 +117,12 @@ in
 
         # Patch config files based on options
         ${crudini} --set "${gameConfigDir}/Game.ini" '/Script/Engine.GameSession' MaxPlayers ${toString cfg.maxPlayers}
-        ${crudini} --set "${gameConfigDir}/ServerSettings.ini" '/Script/FactoryGame.FGServerSubsystem' mAutoPause ${if cfg.autoPause then "True" else "False"}
-        ${crudini} --set "${gameConfigDir}/ServerSettings.ini" '/Script/FactoryGame.FGServerSubsystem' mAutoSaveOnDisconnect ${if cfg.autoSaveOnDisconnect then "True" else "False"}
+        ${crudini} --set "${gameConfigDir}/ServerSettings.ini" '/Script/FactoryGame.FGServerSubsystem' mAutoPause ${
+          if cfg.autoPause then "True" else "False"
+        }
+        ${crudini} --set "${gameConfigDir}/ServerSettings.ini" '/Script/FactoryGame.FGServerSubsystem' mAutoSaveOnDisconnect ${
+          if cfg.autoSaveOnDisconnect then "True" else "False"
+        }
 
         # Set the engine settings
         ${crudini} --set "${gameConfigDir}/Engine.ini" '/Script/OnlineSubsystemUtils.IpNetDriver' NetServerMaxTickRate ${toString cfg.tickRate}
@@ -152,4 +164,3 @@ in
     };
   };
 }
-

@@ -1,6 +1,4 @@
-{
-  configs, pkgs, ...
-}:
+{ configs, pkgs, ... }:
 {
   networking = {
     hostName = "nixtu";
